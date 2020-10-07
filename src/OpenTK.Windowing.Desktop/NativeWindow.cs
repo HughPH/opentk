@@ -991,9 +991,6 @@ namespace OpenTK.Windowing.Desktop
 
         private bool PreProcessEvents()
         {
-            KeyboardState.Update();
-            MouseState.Update();
-
             if (IsExiting)
             {
                 DestroyWindow();
@@ -1046,6 +1043,7 @@ namespace OpenTK.Windowing.Desktop
 
         private unsafe void ProcessInputEvents()
         {
+            KeyboardState.Update();
             _mouseState.Update();
 
             for (var i = 0; i < _joystickStates.Length; i++)
