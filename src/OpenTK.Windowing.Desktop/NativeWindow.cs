@@ -452,13 +452,13 @@ namespace OpenTK.Windowing.Desktop
                 var monitor = value.ToUnsafePtr<GraphicsLibraryFramework.Monitor>();
                 var mode = GLFW.GetVideoMode(monitor);
                 GLFW.SetWindowMonitor(
-                    WindowPtr,
-                    monitor,
-                    _location.X,
-                    _location.Y,
-                    _size.X,
-                    _size.Y,
-                    mode->RefreshRate);
+                WindowPtr,
+                monitor,
+                _location.X,
+                _location.Y,
+                _size.X,
+                _size.Y,
+                mode->RefreshRate);
 
                 _currentMonitor = value;
             }
@@ -995,9 +995,6 @@ namespace OpenTK.Windowing.Desktop
 
         private bool PreProcessEvents()
         {
-            KeyboardState.Update();
-            MouseState.Update();
-
             if (IsExiting)
             {
                 DestroyWindow();
@@ -1052,6 +1049,7 @@ namespace OpenTK.Windowing.Desktop
 
         private void ProcessInputEvents()
         {
+            KeyboardState.Update();
             MouseState.Update();
 
             for (var i = 0; i < _joystickStates.Length; i++)
